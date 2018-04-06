@@ -12,7 +12,11 @@ export default function Product(props) {
       <h1>{props.productObj.name}</h1>
       <h2>{`$${props.productObj.price}`}</h2>
       <button className="btnDelete"
-        onClick={() => props.deleteFn(props.productObj.id)}>Delete</button>
+        onClick={() => {
+          props.deleteFn(props.productObj.id)
+        }}>Delete</button>
+      <button className="btnEdit"
+        onClick={() => props.updateFn(props.productObj)}>Edit</button>
     </div>
   );
 }

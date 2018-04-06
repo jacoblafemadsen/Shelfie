@@ -12,6 +12,7 @@ const port = process.env.PORT || 4000
 app.get('/api/inventory', ctrl.getAll)
 app.post('/api/product', ctrl.create)
 app.delete('/api/product/:id', ctrl.delete)
+app.put('/api/product/:id', ctrl.update)
 
 massive(process.env.CONNECTION_STRING).then(con => {
   app.set('db', con)

@@ -13,12 +13,22 @@ class App extends Component {
     this.state = {
       inventory: []
     }
+    this.updateFn = this.updateFn.bind(this)
+    this.updateImgs = this.updateImgs.bind(this)
   }
   componentDidMount() {
     axios.get(`/api/inventory`).then(res => {
       this.setState({inventory: res.data})
     })
     console.log(this.state.inventory)
+  }
+  updateFn(obj) {
+    this.child1.editFn(obj);
+  }
+  updateImgs() {
+    axios.get(`/api/inventory`).then(res => {
+      this.setState({inventory: res.data})
+    })
   }
   render() {
     return (
@@ -27,9 +37,11 @@ class App extends Component {
         <Header />
 
         <Dashboard 
+          updateImgs={this.updateImgs}
+          updateFn={this.updateFn}
           inventory={this.state.inventory}
         />
-        <Form />
+        <Form updateImgs={this.updateImgs} ref={instance => { this.child1 = instance; }}/>
       </div>
     );
   }

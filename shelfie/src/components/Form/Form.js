@@ -9,8 +9,11 @@ export default class Form extends Component {
       name: '',
       price: '',
       imgurl: '',
+      editFlag: false,
+      id: 0,
       defImg: 'http://www.staticwhich.co.uk/static/images/products/no-image/no-image-available.png'
     }
+    this.editFn = this.editFn.bind(this)
   }
   updateImgUrl(e) {
     this.setState({imgurl: e})
@@ -26,7 +29,8 @@ export default class Form extends Component {
       name: '',
       price: '',
       imgurl: '',
-      defImg: 'http://www.staticwhich.co.uk/static/images/products/no-image/no-image-available.png'
+      editFlag: false,
+      id: 0
     })
   }
   addProduct() {
@@ -34,10 +38,29 @@ export default class Form extends Component {
     let obj = {
       name: name,
       price: price,
-      imgurl: imgurl
+      url: imgurl
     }
-    axios.post(`/api/product`, obj).then(res => {
-      console.log('Success!')
+    if(this.state.editFlag) {
+      axios.put(`/api/product/${this.state.id}`, obj).then(res => {
+        console.log('Success!')
+        this.props.updateImgs()
+      })
+    } else {
+      axios.post(`/api/product`, obj).then(res => {
+        console.log('Success!')
+        this.props.updateImgs()
+      })
+    }
+    this.cancel()
+  }
+  editFn(obj) {
+    let { id, name, url, price } = obj
+    this.setState({
+      id: id,
+      name: name,
+      imgurl: url,
+      price: price,
+      editFlag: true
     })
   }
   render() {
