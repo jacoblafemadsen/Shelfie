@@ -14,6 +14,7 @@
   display: block;
   margin: 0 auto;
   min-height: 180px;
+  margin-bottom: 50px;
 }
 .formImg img {
   width: 100%;
@@ -25,4 +26,14 @@
   height: 40px;
   border-radius: 10px;
   background: #ED6B5A;
+}
+.btnDiv {
+  width: 100%;
+  height: 50px;
+}
+.button1 {
+  float: left;
+}
+.button2 {
+  float: right;
 }

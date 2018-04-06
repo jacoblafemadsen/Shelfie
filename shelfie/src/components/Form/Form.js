@@ -57,14 +57,16 @@ export default class Form extends Component {
           value={this.state.name}
           onChange={e => this.updateName(e.target.value)}/>
         <label>Price:</label>
-        <input className="input1"
+        <input className="input"
           placeholder="Price"
           value={this.state.price}
           onChange={e => this.updatePrice(e.target.value)}/>
-        <button className="button1"
-          onClick={() => this.cancel()}>Cancel</button>
-        <button className="button1"
-          onClick={() => this.addProduct()}>Add to Inventory</button>
+        <div className="btnDiv">
+          <button className="button1"
+            onClick={() => this.cancel()}>Cancel</button>
+          <button className="button2"
+            onClick={() => this.addProduct()}>Add to Inventory</button>
+        </div>
       </div>
     );
   }
